@@ -20,3 +20,4 @@ require_once 'src/contain.php';
 require_once 'src/properties.php';
 require_once 'src/methods.php';
 require_once 'src/map.php';
+require_once 'src/apply_after.php';

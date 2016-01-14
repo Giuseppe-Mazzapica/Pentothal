@@ -214,6 +214,26 @@ Here a list of all the functions currently provided by library (namespace omitte
 - `poolCallbacks(...$predicates)` Like `pool()` but accepts an array of predicates
 - `combineMap(array $predicates)` Takes a map of predicates and return a predicates that applies to a map value, returns true when all the predicates return true
 - `poolMap(array $predicates)` Like combineMap, but the returned predicates return `true` when any the predicates returns `true`
+
+### Transforming a value before applying the predicate
+
+- `applyAfter(callable $transformation, callable $predicate)` Returns a predicate
+  which returns the result of the predicate, after it has been applied
+  the the input value, transformed by the `$transformation` function.
+
+#### Example
+
+```php
+use Pentothal as P;
+
+function getYear(DateTime $data)
+{
+    return $data->format('Y');
+}
+
+$datesFrom2016 = array_filter($dates, P\applyAfter('getYear', isSame('2016')));
+
+```
  
 # Quite complex example
 
